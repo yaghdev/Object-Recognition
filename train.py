@@ -96,6 +96,7 @@ def train():
             Expand((1, 4), prob=0.5),
             ObjectRandomCrop(),
             HorizontalFlip(),
+            RandomRotate(),
             Resize(300),
             CoordsToBoxes(),
             [SubtractMean(mean=VOC.MEAN)],
@@ -148,7 +149,7 @@ def test():
 
     dataset = VOCDetection(
             root=opt.voc_root, 
-            image_set=[('2007', 'test')],
+            image_set=[('2012', 'test')],
             transform=Compose([
                 BoxesToCoords(),
                 Resize(300),
@@ -190,7 +191,7 @@ def demo():
 
     dataset = VOCDetection(
             root=opt.voc_root, 
-            image_set=[('2007', 'test')],
+            image_set=[('2012', 'test')],
             transform=Compose([
                 BoxesToCoords(),
                 Resize(300),
